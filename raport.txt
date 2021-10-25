@@ -1,0 +1,9 @@
+Praca z Formatem FASTA jest nieprzyjemna od samego początku. Ze względu na brak dokumentacji formatu nie ma jednoznacznie dobrego sposobu na jego implementację. Już na starcie zauważyłem, że opis formatu różni się u różnych źródeł. Polska wikipedia jest dość uboga w informację o formacie, na wikipedii angielskiej jest już tych informacji znacznie więcej, ale pojawia się tam sporo niejednoznaczności. Na przykład:
+    a) angielska wikipedia wskazuje, że symbol (i) jest dozwolonym znakiem, polska wikipedia o tym nie wspomina
+    b) jedna linia w foracie miała być na początku jego istnienie nie dłuższa niż 120 znaków. Nie ma informacji czy dalej należy trzymać się ograniczenia 120 symboli
+    c) pierwsza linia opisu może zaczynać się od znaku ">", ";" 
+    d) po linii opisu zaczyna się sekwencja. Wszystkie niedozwolone znaki mają być "ignorowane" (cokolwiek to znaczy)
+    e) sekwencje często kończy się symbolem "*", ale nie zawsze
+    f) czasami między linią opisu a sekwencją zostawia się linie przerwy, ale nie zawsze
+    
+Wszystkie te problemy, na pierwszy rzut oka małe, sprawiają, że pisanie parsera do tego formatu jest drogą przez mękę. Nie wiadomo do końca, z jakiego źródła brać informację o formacie. Oprócz tego nie wiadomo jak interpretować niektóre zasaday w formacie. Dodatkowo nie wiadomo czy niektóre informacje o standardzie są przestarzałe i dalej faktycznie używane (na przykład limit 120 znaków).

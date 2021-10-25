@@ -14,10 +14,15 @@ def read_file(path):
 
 
 def validate(line):
-    validate_length(line.__len__())
     start_char = validate_start_character(line[0])
     if not start_char:
         validate_allowed_characters(line)
+        sequences[descriptions[-1]] += line.__len__()
+    else:
+        sequences[line] = 0
+        descriptions.append(line)
+
+    validate_length(line.__len__())
 
 
 def validate_length(line_len):
@@ -37,8 +42,11 @@ def validate_allowed_characters(line):
 
 
 pattern = re.compile('[A-Z/*;-]')
+descriptions = list()
+sequences = {}
 
 if __name__ == '__main__':
     read_file("../data.txt")
+    print(sequences)
 
 

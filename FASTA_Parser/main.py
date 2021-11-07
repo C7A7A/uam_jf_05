@@ -1,52 +1,55 @@
 import re
+import pprint
 
 
 def read_file(path):
-    description_line_counter = 0
     with open(path) as f:
         lines = f.readlines()
         for line in lines:
-            if line[0] == ">" or line[0] == ";":
-                description_line_counter += 1
-            validate(line)
             print(line, end="")
-    print("Description line counter: ", description_line_counter)
+            validate(line)
 
 
 def validate(line):
-    start_char = validate_start_character(line[0])
-    if not start_char:
-        validate_allowed_characters(line)
-        sequences[descriptions[-1]] += line.__len__()
-    else:
-        sequences[line] = 0
-        descriptions.append(line)
+    line = line.strip()
 
     validate_length(line.__len__())
 
+    if is_description_line(line[0]):
+        global description_line_counter
+        description_line_counter = description_line_counter + 1
+        sequences[line] = 0
+        descriptions.append(line)
+
+    else:
+        validate_allowed_characters(line)
+        sequences[descriptions[-1]] += line.__len__()
+
 
 def validate_length(line_len):
-    if line_len > 120:
-        print("Line is too long (> 120 characters)")
+    if line_len > 140:
+        print("Line is too long (> 140 characters)")
 
 
-def validate_start_character(start_char):
+def validate_allowed_characters(line):
+    if re.search(pattern, line):
+        print("Not allowed characters in line")
+
+
+def is_description_line(start_char):
     if start_char == ">" or start_char == ";":
         return True
     return False
 
 
-def validate_allowed_characters(line):
-    if not re.search(pattern, line):
-        print("Not allowed characters in line")
-
-
-pattern = re.compile('[A-Z/*;-]')
+pattern = re.compile(r'[^A-Z*-]')
 descriptions = list()
 sequences = {}
+description_line_counter = 0
 
 if __name__ == '__main__':
     read_file("../data.txt")
-    print(sequences)
-
-
+    print("Description line counter: ", description_line_counter)
+    pp =  pprint.PrettyPrinter(indent=4)
+    pp.pprint(sequences)
+   

@@ -1,0 +1,31 @@
+Możliwe stany:
+- L (Low)
+- H (High)
+- F (Fail)
+
+Generator:
+- szybkość próbkowania określona w 1 linii pliku
+- wartości w parach np. LH
+- w parze wartości może pojawić się F
+- ciąg dla obrotu w prawo: LL LH HH HL LL
+- ciąg dla obrotu w lewo: LL HL HH LH LL
+
+Koło zębate:
+- takie same odległości między zębatkami
+- zębatki o takiej samej wielkości
+- szerokość wcięcia = szerokość zebatki
+- koło może zmienić kierunek obracania się
+- koło nie staje w miejscu przy zmianie kierunku obracania się
+
+Dekodery:
+- dekodery określają czy zębatka kręci się w lewo czy w prawo
+- po 10 takich samych odczytach par z rzędu - STOP
+- po 2 odczytach z F z zrzędu - FAIL
+- mała odległość między dekoderami
+- dekoder jest w stanie odczytać stan dla każdego wcięcia i każdej zębatki 2 razy
+
+Stany wyjścia:
+LEFT - Obrót w lewo
+RIGHT - Obrót w prawo
+STOP - Koło zatrzymało się
+FAIL - Błąd

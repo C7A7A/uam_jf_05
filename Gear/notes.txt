@@ -7,8 +7,8 @@ Generator:
 - szybkość próbkowania określona w 1 linii pliku
 - wartości w parach np. LH
 - w parze wartości może pojawić się F
-- ciąg dla obrotu w prawo: LL LH HH HL LL
-- ciąg dla obrotu w lewo: LL HL HH LH LL
+- ciąg dla obrotu w prawo: LL LH HH HL
+- ciąg dla obrotu w lewo: LL HL HH LH
 
 Koło zębate:
 - takie same odległości między zębatkami

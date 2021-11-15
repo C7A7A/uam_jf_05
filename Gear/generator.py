@@ -1,7 +1,6 @@
 from random import randrange
 import numpy
 
-
 def rotate_left(time, prev_position):
   for seq in range(time):
     position_index = seq_rotate_left.index(prev_position)
@@ -50,6 +49,7 @@ seq_rotate_left = ["LL", "LH", "HH", "HL"]
 seq_rotate_right = ["LL", "HL", "HH", "LH"]
 last_position = "LL"
 output = open("data.txt", "w")
+
 
 if __name__ == "__main__":
   for run in range(100):

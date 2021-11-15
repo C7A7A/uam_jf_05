@@ -4,7 +4,6 @@ Możliwe stany:
 - F (Fail)
 
 Generator:
-- szybkość próbkowania określona w 1 linii pliku
 - wartości w parach np. LH
 - w parze wartości może pojawić się F
 - ciąg dla obrotu w prawo: LL LH HH HL

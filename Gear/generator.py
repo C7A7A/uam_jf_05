@@ -2,27 +2,41 @@ from random import randrange
 import numpy
 
 
-def rotate_left(time):
+def rotate_left(time, prev_position):
   for seq in range(time):
-    print(seq_rotate_left[seq % 2], end="")
-  return seq_rotate_left[(time-1) % 2][3:5]
+    position_index = seq_rotate_left.index(prev_position)
+    output.write(
+      f'{seq_rotate_left[(position_index + 1) % 4]} {seq_rotate_left[(position_index + 2) % 4]} '
+    )
+
+    prev_position = seq_rotate_left[(position_index + 2) % 4]
+
+  return prev_position
     
 
-def rotate_right(time):
+def rotate_right(time, prev_position):
   for seq in range(time):
-    print(seq_rotate_right[seq % 2], end="")
-  return seq_rotate_right[(time-1) % 2][3:5]
+    position_index = seq_rotate_right.index(prev_position)
+    output.write(
+      f'{seq_rotate_right[(position_index + 1) % 4]} {seq_rotate_right[(position_index + 2) % 4]} '
+    )
+    prev_position = seq_rotate_right[(position_index + 2) % 4]
 
+  return prev_position
+    
 
-def rotate_stop(time):
+def rotate_stop(time, prev_position):
   for seq in range(time):
-    print(f'{last_position} {last_position} ', end="")
+    output.write(f'{prev_position} {prev_position} ')
+
+  return prev_position
 
 
-def rotate_fail(time):
+def rotate_fail(time, prev_position):
   for seq in range(time):
-    print(seq_rotate_fail, end="")
-  return "FF"
+    output.write('FF FF ')
+
+  return prev_position
     
 
 rotation_mode = {
@@ -32,11 +46,10 @@ rotation_mode = {
   3: rotate_fail
 }
 
-seq_rotate_left = ["LL LH ", "HH HL "]
-seq_rotate_right = ["LL HL ", "HH LH "]
-seq_rotate_fail = "FF FF "
+seq_rotate_left = ["LL", "LH", "HH", "HL"]
+seq_rotate_right = ["LL", "HL", "HH", "LH"]
 last_position = "LL"
-
+output = open("data.txt", "w")
 
 if __name__ == "__main__":
   for run in range(100):
@@ -45,7 +58,6 @@ if __name__ == "__main__":
       numpy.arange(0, 4), p=[0.45, 0.45, 0.09, 0.01]
     )
 
-    last_position = rotation_mode[simulate_rotation](simulate_time)
-    print("")
+    last_position = rotation_mode[simulate_rotation](simulate_time, last_position)
 
-
+  output.close()

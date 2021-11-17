@@ -52,7 +52,7 @@ output = open("data.txt", "w")
 
 
 if __name__ == "__main__":
-  for run in range(100):
+  for run in range(1000):
     simulate_time = randrange(1, 101)
     simulate_rotation = numpy.random.choice(
       numpy.arange(0, 4), p=[0.45, 0.45, 0.09, 0.01]

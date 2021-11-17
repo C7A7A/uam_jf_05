@@ -1,0 +1,14 @@
+co sprawiło trudności:
+- ustalenie wszystkich założeń
+- odpowiednie parsowanie wyników
+
+produkt rynkowy:
+- zmienienie założeń żeby odzwierciedlały faktyczne koło zębate
+- sprawdzać takie parametry jak:
+* szybkość obrotu
+* wielkość zębatek i wcięć
+* odległości między zębatkami i wcięciami
+* zmiana prędkości przy zmianie obrotu
+* odległość między dekoderami
+* szybkość próbkowania
+- obsłużenie różnych błędów

@@ -1,5 +1,5 @@
 const checkForNewCar = () => {
-  if ((Math.floor(Math.random() * 10) >= 7)) return true
+  if ((Math.floor(Math.random() * 10) >= 8)) return true
   return false
 }
 

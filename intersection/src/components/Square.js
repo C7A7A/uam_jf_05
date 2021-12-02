@@ -1,12 +1,13 @@
 import React from 'react'
 import { useState, useEffect, forwardRef, useImperativeHandle } from 'react'
 import checkForNewCar from '../helpers/checkForNewCar'
+import getLightColor from '../helpers/getLightColor'
 
-const Square = forwardRef(({numCars, color, active}, ref) => {
+const Square = forwardRef(({numCars, color, active, direction}, ref) => {
 
   const [cars, setCars] = useState(numCars)
   const [bgColor, setBgColor] = useState(color)
-  const [greenLight, setGreenLight] = useState(bgColor === "bg-success" ? true : false)
+  const lightColor = getLightColor(bgColor)
 
   useEffect(() => {
       const interval = setInterval(() => {
@@ -15,7 +16,7 @@ const Square = forwardRef(({numCars, color, active}, ref) => {
             setCars(cars + 1)
           }
 
-          if (greenLight && cars > 0) {
+          if (lightColor === "green" && cars > 0) {
             setCars(cars - 1)
           }
         }
@@ -23,23 +24,31 @@ const Square = forwardRef(({numCars, color, active}, ref) => {
       return () => {
         clearInterval(interval)
       }
-  }, [cars, active, greenLight])
+  }, [cars, active, lightColor])
 
-  const switchBgColor = () => {
-      if (active &&greenLight) {
-        setBgColor("bg-danger")
-        setGreenLight(false)
-      } else {
-        setBgColor("bg-success")
-        setGreenLight(true)
-      }
+  const switchToGreen = () => {
+    setBgColor('bg-success')
+  }
+
+  const switchToYellow = (nextLight) => {
+    setBgColor('bg-warning')
+    setTimeout(
+      () => {
+        if (nextLight === "green") switchToGreen()
+        else if (nextLight === "red") switchToRed()
+      }, 2000)
+  }
+
+  const switchToRed = () => {
+    setBgColor('bg-danger')
   }
 
   useImperativeHandle(ref, () => {
     return {
-      switchBgColor: switchBgColor,
       cars: cars,
-      greenLight: greenLight
+      lightColor: lightColor,
+      direction: direction,
+      switchToYellow: switchToYellow
     }
   })
 

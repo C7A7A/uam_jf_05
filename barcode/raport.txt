@@ -1,0 +1,7 @@
+- wymyślenie i narysowanie automaty stanowego nie było trudne. Wydaje mi się, że udało mi się stworzyć optymalną wersję na kartce.
+- w czasie pisania kodu udało mi się zmienszyć ilość warunków dla automatu tzn. zawsze kiedy dostajemy zdarzenie J możemy ustawić stan automatu na J. Oprócz tego możemy ustawić stan automatu na C kiedy stan automatu to C lub JCC. W ten sposób udało mi się zmniejszyć ilość "ifów" z 9 na 5.
+- wyzwaniem okazał się stan JC. Nie można jednoznacznie określić co powinniśmy wypisać, 1 czy 0. Dopiero w kolejnej iteracji automatu, po dostaniu zdarzenia J lub C należy sprawdzić jaki był poprzedni stan i na tej podstawie wypisać 1 lub 0 dla poprzedniego zdarzenia.
+- twardy limit na zużycie pamięci był kłopotliwy. Mój kod ma "2 wersje". Jedna z nich to wersja testowa, która generuje ciąg znaków, który następnie parsuje przy użyciu automatu stanów. Druga wersja czyta dane z stdin, na bieżąco analizuje dane i printuje odpowiedzi (wersja, która zużywa mniej pamięci). Aby "przełączyć" się miedzy wersjami należy po prostu zakomentować kilka linii w kodzie.
+- raczej nie zabrakło mi goto. Od początku zadania miałem w głowie pewien plan działania i się go trzymałem.
+- użycie pythona jest dla mnie przyjemne w tego typu zadaniach, ale nie jest on oczywiście tak wydajny jak języki niższych poziomów.
+- najelpszym językiem do tego typu zadania jest moim zdaniem C lub C++. Oba języki są stosowane przy programowaniu mikrokontrolerów, automatów, są niskiego poziomu i są bardzo wydajne.

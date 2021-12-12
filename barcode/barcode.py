@@ -1,4 +1,6 @@
 import random
+from stateMachine import StateMachine
+import fileinput
 
 
 def generate_data(amount):
@@ -14,4 +16,13 @@ def generate_data(amount):
 
 if __name__ == "__main__":
     barcode = generate_data(100)
-    print(barcode)
+    [print(i, end="") for i in barcode]
+    print()
+
+    parser = StateMachine()
+    for event in barcode:
+        parser.parse_event(event)
+    # for event in fileinput.input():
+    #     parser.parse_event(event.rstrip("\n"))
+    parser.cleanup()
+
